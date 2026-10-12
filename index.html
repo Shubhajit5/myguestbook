@@ -1,48 +1,193 @@
-<Html>
-<Head>
-<Title>My Guest Book
-</Title>
-</Head>
-<Body>
-<H1>My Guest Book</H1>
-<p>Please let me know what you think of my Web Pages Thanks! </p><br>
-<Form METHOD = POST>
-<Table>
-<Tr>
-<Td>What is your name? <input type=text> </Td></Tr><Tr>
-<Td>What is your e-mail address: <input type=text> </Td> </Tr> </Table>
-<Br><Br>
-Check all that apply : 
-<Br>
-<Table>
-<Tr><Td><INPUT type="checkbox" name="A1" value="I realy like your Web Site.">I realy like your Web Site.
-</Td></Tr><Tr><Td>
-<INPUT type="checkbox" name="A2" value="One of the best site I've seen.">One of the best site I've seen.
-</Td></Tr><Tr><Td>
-<INPUT type="checkbox" name="A3" value="I have no taste so your site didn't do much for me.">I have no taste so your site didn't do much for me.
-</Td></Tr></Table><Br>
-Choose the one thing you love best of my pages:
-<Br>
-<INPUT type="radio" name="B" value="That gorgeous picture of you and your dogs." /> That gorgeous picture of you and your dogs.
-<Br>
-<INPUT type="radio" name="B" value="The inspiring recap about your childhood." /> The inspiring recap about your childhood.
-<Br>
-<INPUT type="radio" name="B" value="The detailed list of your hobbies." /> The detailed list of your hobbies.
-<Br><Br>
-Imagine my site as a book, vedio, or album.
-<Br>
-What do you think about my site?
-<Br>
-<SELECT name="C">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Guest Book</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary: #4f46e5;
+            --primary-hover: #4338ca;
+            --bg: #f8fafc;
+            --card: #ffffff;
+            --text: #0f172a;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+            --radius: 12px;
+            --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.01);
+        }
 
-<OPTION value = "ADD MORE DETAILS ABOUT YOUR HOBBIES!" selected>ADD MORE DETAILS ABOUT YOUR HOBBIES!</OPTION>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
 
-<OPTION value = "ADD PICTURES OF YOUR CHILDHOOD">ADD PICTURES OF YOUR CHILDHOOD</OPTION>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
 
-<OPTION value = "ADD YOUR FAVOURITES">ADD YOUR FAVOURITES</OPTION>
-</SELECT>
-<Br><Br>
-<INPUT type='submit' name='Submit' value='Click here to submit' />
-</Form>
-</Body>
-</Html>
+        .guestbook-card {
+            background-color: var(--card);
+            width: 100%;
+            max-width: 600px;
+            padding: 35px 30px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+        }
+
+        header { margin-bottom: 25px; text-align: center; }
+        header h1 { font-size: 1.8rem; font-weight: 700; color: var(--text); }
+        header p { color: var(--text-muted); font-size: 0.95rem; margin-top: 6px; }
+
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; font-weight: 600; font-size: 0.9rem; margin-bottom: 6px; }
+
+        input[type="text"], select {
+            width: 100%;
+            padding: 12px 14px;
+            border: 1.5px solid var(--border);
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-family: inherit;
+            background-color: #fff;
+            transition: all 0.2s ease;
+        }
+
+        input[type="text"]:focus, select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15);
+        }
+
+        fieldset {
+            border: 1.5px solid var(--border);
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 20px;
+        }
+
+        legend {
+            font-weight: 600;
+            font-size: 0.9rem;
+            padding: 0 6px;
+            color: var(--text);
+        }
+
+        .option-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-bottom: 12px;
+            cursor: pointer;
+            font-size: 0.92rem;
+            color: var(--text-muted);
+            line-height: 1.4;
+        }
+
+        .option-item:last-child { margin-bottom: 0; }
+        .option-item input { accent-color: var(--primary); width: 18px; height: 18px; margin-top: 2px; cursor: pointer; }
+
+        .btn-submit {
+            width: 100%;
+            padding: 14px;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+
+        .btn-submit:hover { background-color: var(--primary-hover); }
+    </style>
+</head>
+<body>
+
+    <main class="guestbook-card">
+        <header>
+            <h1>📖 My Guest Book</h1>
+            <p>Please let me know what you think of my Web Pages. Thanks!</p>
+        </header>
+
+        <!-- 
+          ========================================================================
+          REPLACE "YOUR_EMAIL_HERE@gmail.com" BELOW WITH YOUR ACTUAL EMAIL ADDRESS
+          ========================================================================
+        -->
+        <form action="https://formsubmit.co/shubhajitr995@gmail.com" method="POST">
+
+            <!-- Redirect user to the Rickroll video upon form submission -->
+            <input type="hidden" name="_next" value="https://www.youtube.com/watch?v=dQw4w9WgXcQ">
+
+            <!-- Custom Email Subject Line -->
+            <input type="hidden" name="_subject" value="📖 New Guest Book Entry Received!">
+
+            <!-- Disable captcha verification step for seamless submission -->
+            <input type="hidden" name="_captcha" value="false">
+
+            <div class="form-group">
+                <label for="name">What is your name?</label>
+                <input type="text" id="name" name="Name" placeholder="John Doe" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">What is your e-mail address?</label>
+                <input type="text" id="email" name="Email" placeholder="john@example.com" required>
+            </div>
+
+            <fieldset>
+                <legend>Check all that apply:</legend>
+                <label class="option-item">
+                    <input type="checkbox" name="A1" value="I really like your Web Site.">
+                    <span>I really like your Web Site.</span>
+                </label>
+                <label class="option-item">
+                    <input type="checkbox" name="A2" value="One of the best sites I've seen.">
+                    <span>One of the best sites I've seen.</span>
+                </label>
+                <label class="option-item">
+                    <input type="checkbox" name="A3" value="I have no taste so your site didn't do much for me.">
+                    <span>I have no taste so your site didn't do much for me.</span>
+                </label>
+            </fieldset>
+
+            <fieldset>
+                <legend>Choose the one thing you love best about my pages:</legend>
+                <label class="option-item">
+                    <input type="radio" name="B" value="That gorgeous picture of you and your dogs." required>
+                    <span>That gorgeous picture of you and your dogs.</span>
+                </label>
+                <label class="option-item">
+                    <input type="radio" name="B" value="The inspiring recap about your childhood.">
+                    <span>The inspiring recap about your childhood.</span>
+                </label>
+                <label class="option-item">
+                    <input type="radio" name="B" value="The detailed list of your hobbies.">
+                    <span>The detailed list of your hobbies.</span>
+                </label>
+            </fieldset>
+
+            <div class="form-group">
+                <label for="feedback">Imagine my site as a book, video, or album. What do you think about my site?</label>
+                <select id="feedback" name="C">
+                    <option value="ADD MORE DETAILS ABOUT YOUR HOBBIES!" selected>ADD MORE DETAILS ABOUT YOUR HOBBIES!</option>
+                    <option value="ADD PICTURES OF YOUR CHILDHOOD">ADD PICTURES OF YOUR CHILDHOOD</option>
+                    <option value="ADD YOUR FAVOURITES">ADD YOUR FAVOURITES</option>
+                </select>
+            </div>
+
+            <button type="submit" class="btn-submit">Click here to submit</button>
+        </form>
+    </main>
+
+</body>
+</html>
